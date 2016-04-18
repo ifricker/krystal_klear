@@ -16,6 +16,7 @@
   <%= f.input :phone, placeholder: "555-555-5555" %>
   <%= f.input :email, placeholder: "user@krystalklear.com" %>
   <%= f.input :password, input_html: { maxlength: 20 } %>
+  <%= f.input :admin, as: :boolean, checked_value: true, unchecked_value: false  %>
   <%= f.button :submit %>
 
 

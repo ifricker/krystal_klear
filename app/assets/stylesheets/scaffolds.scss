@@ -1,5 +1,5 @@
 body {
-  background-color: #fff;
+  background-color: #FEFFF1;
   color: #333;
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 13px;
@@ -25,9 +25,10 @@ a {
     color: #666;
   }
 
+  text-decoration: none;
+
   &:hover {
-    color: #fff;
-    background-color: #000;
+    color: #004d99;
   }
 }
 

@@ -1,3 +1,5 @@
+<div class="form_container">
+
 <%= form_for(@client) do |f| %>
   <% if @client.errors.any? %>
     <div id="error_explanation">
@@ -32,10 +34,12 @@
     <%= f.text_field :neighborhood %>
   </div>
   <div class="field">
-    <%= f.label :ZIP_code %><br>
-    <%= f.text_field :ZIP_code %>
+    <%= f.label :zip_code %><br>
+    <%= f.text_field :zip_code %>
   </div>
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
+
+</div>

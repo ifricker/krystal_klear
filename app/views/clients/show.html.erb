@@ -1,5 +1,5 @@
+<div class="client_container">
 <p id="notice"><%= notice %></p>
-
 <p>
   <strong>Business name:</strong>
   <%= @client.business_name %>
@@ -27,8 +27,9 @@
 
 <p>
   <strong>Zip code:</strong>
-  <%= @client.ZIP_code %>
+  <%= @client.zip_code %>
 </p>
 
 <%= link_to 'Edit', edit_client_path(@client) %> |
 <%= link_to 'Back', clients_path %>
+</div>

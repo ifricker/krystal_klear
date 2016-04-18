@@ -6,7 +6,7 @@ class CreateClients < ActiveRecord::Migration
       t.string :contact_phone
       t.string :street_address, null: false
       t.string :neighborhood, null: false
-      t.string :ZIP_code, null: false
+      t.string :zip_code, null: false
 
       t.timestamps null: false
     end

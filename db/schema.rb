@@ -35,4 +35,15 @@ ActiveRecord::Schema.define(version: 20160418184446) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+
+  create_table "clients", force: :cascade do |t|
+    t.string   "business_name",  null: false
+    t.string   "contact_email",  null: false
+    t.string   "contact_phone"
+    t.string   "street_address", null: false
+    t.string   "neighborhood",   null: false
+    t.string   "ZIP_code",       null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
 end

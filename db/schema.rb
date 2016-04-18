@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20160418184446) do
     t.string   "name",                   default: "", null: false
     t.string   "phone",                  default: "", null: false
     t.boolean  "admin"
+    t.date     "hire_date"
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"

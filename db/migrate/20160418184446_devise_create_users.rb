@@ -7,6 +7,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string :name, null: false, default: ""
       t.string :phone, null: false, default: ""
       t.boolean :admin
+      t.date :hire_date
 
 
       ## Recoverable

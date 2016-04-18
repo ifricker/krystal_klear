@@ -6,10 +6,10 @@ services:
   - postgresql
 
 before_script:
-  - psql -c 'create database travis_ci_test;' -U
+  - psql -c 'create database travis_ci_test;' -U postgres
   - psql -l
-  - bundle exec rake -T
-  - bundle exec rake db:migrate --trace
 
-script: "bundle exec rspec spec/"
+script:
+  - bundle exec rake db:migrate --trace
+  - bundle exec rspec spec/
 

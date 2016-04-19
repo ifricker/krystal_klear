@@ -5,7 +5,6 @@
       <th>Description</th>
       <th>Frequency</th>
       <th>Estimated price</th>
-      <th>Client</th>
       <th>Route</th>
       <th colspan="3"></th>
     </tr>
@@ -18,8 +17,7 @@
         <td><%= job.description %></td>
         <td><%= job.frequency %></td>
         <td><%= job.estimated_price %></td>
-        <td><%= job.client_id %></td>
-        <td><%= job.route_id %></td>
+        <td><%= job.route.name %></td>
         <td><%= link_to 'Show', client_job_path(@client, job) %></td>
         <td><%= link_to 'Edit', edit_client_job_path(@client, job) %></td>
         <td><%= link_to 'Destroy', client_job_path(@client, job), method: :delete, data: { confirm: 'Are you sure?' } %></td>

@@ -5,8 +5,9 @@
     <div class="form-inputs">
       <%= f.input :name %>
       <%= f.input :description %>
-      <%= f.input :frequency %>
+      <%= f.input :frequency, collection: [1, 2, 4, 8, 12], label: 'every number of weeks' %>
       <%= f.input :estimated_price %>
+      <%= f.association :route, collection: Route.order(:name), prompt: "Choose a Route" %>
     </div>
 
     <div class="form-actions">

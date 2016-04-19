@@ -79,6 +79,7 @@ ActiveRecord::Schema.define(version: 20160419183643) do
     t.integer  "job_id",                      null: false
     t.float    "final_price"
     t.text     "notes"
+    t.integer  "week"
     t.boolean  "complete",    default: false
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false

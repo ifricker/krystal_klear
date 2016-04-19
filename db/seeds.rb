@@ -57,7 +57,7 @@ end
   Job.create!({
     name: Faker::Company.name,
     description: Faker::Lorem.sentence,
-    frequency: rand(1..4),
+    frequency: ['1','1','1','1','1','2','2','2','4','8','12'].sample,
     estimated_price: Faker::Commerce.price,
     client_id: rand(1..50),
     route_id: rand(1..10)

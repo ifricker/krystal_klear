@@ -1,0 +1,20 @@
+.name-header {
+  text-align: center;
+}
+
+.orders-container {
+  margin: 0 auto;
+  width: 650px;
+}
+
+.incomplete-orders {
+  width: 300px;
+  display: inline-block;
+  margin: 10px;
+}
+
+.complete-orders {
+  width: 300px;
+  display: inline-block;
+  margin: 10px;
+}

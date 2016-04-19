@@ -1,0 +1,38 @@
+<h1 class="client_header">Krystal Klear's Clients</h1>
+<div class="destroy_notice">
+  <p id="notice"><%= notice %></p>
+</div>
+
+<table id='client_table'>
+  <thead>
+    <tr id="head">
+      <th>Business name</th>
+      <th>Contact email</th>
+      <th>Contact phone</th>
+      <th>Street address</th>
+      <th>Neighborhood</th>
+      <th>Zip code</th>
+      <th colspan="3" id="new_client_button"><%= link_to 'New Client', new_client_path %></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @clients.each do |client| %>
+      <tr>
+        <td><%= client.business_name %></td>
+        <td><%= client.contact_email %></td>
+        <td><%= client.contact_phone %></td>
+        <td><%= client.street_address %></td>
+        <td><%= client.neighborhood %></td>
+        <td><%= client.zip_code %></td>
+        <td><%= link_to 'Show', client %></td>
+        <td><%= link_to 'Edit', edit_client_path(client) %></td>
+        <td><%= link_to 'Delete', client, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+

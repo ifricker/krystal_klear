@@ -1,0 +1,60 @@
+.client_header {
+  text-align: center;
+}
+
+#client_table {
+  margin: 0 auto;
+}
+
+#client_table th, td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+#client_table tr:nth-child(even) {background-color: #ccddff}
+
+#client_table #head {
+  background-color: #668cff;
+}
+
+#new_client_button {
+  background-color: #66cc99;
+}
+
+#new_client_button a {
+  text-decoration: none;
+  margin-left: 42px;
+  color: #333;
+}
+
+#new_client_button a:hover {
+  background-color: #66cc99;
+}
+
+.client_container {
+  width: 300px;
+  margin: 0 auto;
+  padding: 20px;
+  padding-left: 50px;
+  border: 2px solid #668cff;
+}
+
+.form_container {
+  width: 300px;
+  margin: 0 auto;
+}
+
+input {
+  width: 100%;
+}
+
+div.back_link {
+  width: 300px;
+  margin: 0 auto;
+}
+
+.destroy_notice {
+  width: 300px;
+  margin: 0 auto;
+}

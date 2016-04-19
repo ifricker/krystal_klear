@@ -62,7 +62,7 @@ class JobsController < ApplicationController
     @client = Client.find(params[:client_id])
     @job.destroy
     respond_to do |format|
-      format.html { redirect_to client_jobs_path(@client), notice: 'Job was successfully destroyed.' }
+      format.html { redirect_to client_path(@client), notice: 'Job was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

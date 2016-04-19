@@ -16,14 +16,14 @@ feature 'Admin creating, viewing, editing and deleting clients' do
   scenario 'when admin clicks on show' do
     client = Client.create!(business_name: 'Company', contact_email: 'Company@email.com', contact_phone: '123-456-789', street_address: 'Company st.', neighborhood: 'Company neighborhood', zip_code: '0000')
     visit '/clients'
-    click_link "Show"
+    first(:link, "Show").click
     expect(page).to have_content('Edit | Back')
   end
 
     scenario 'when admin clicks on edit' do
     client = Client.create!(business_name: 'Company', contact_email: 'Company@email.com', contact_phone: '123-456-789', street_address: 'Company st.', neighborhood: 'Company neighborhood', zip_code: '0000')
     visit '/clients'
-    click_link "Edit"
+    first(:link, "Edit").click
     expect(page).to have_content('Editing Client')
   end
 

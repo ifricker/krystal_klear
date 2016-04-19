@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @job.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @job.description %>
+</p>
+
+<p>
+  <strong>Frequency:</strong>
+  <%= @job.frequency %>
+</p>
+
+<p>
+  <strong>Estimated price:</strong>
+  <%= @job.estimated_price %>
+</p>
+
+<p>
+  <strong>Client:</strong>
+  <%= @job.client_id %>
+</p>
+
+<p>
+  <strong>Route:</strong>
+  <%= @job.route_id %>
+</p>
+
+<%= link_to 'Edit', edit_client_job_path(@client, @job) %> |
+<%= link_to 'Back', client_path(@client) %>

@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   resources :routes
   devise_for :users
   resources :users
-  resources :clients
+  resources :clients do
+    resources :jobs
+  end
 
 
   # The priority is based upon order of creation: first created -> highest priority.

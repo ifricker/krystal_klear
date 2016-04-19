@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 20160419183643) do
   create_table "jobs", force: :cascade do |t|
     t.string   "name",            null: false
     t.string   "description",     null: false
-    t.string   "frequency"
+    t.integer  "frequency"
     t.float    "estimated_price", null: false
     t.integer  "client_id",       null: false
     t.integer  "route_id"

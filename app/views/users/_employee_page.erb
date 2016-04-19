@@ -3,25 +3,26 @@
 
 <divclass="incomplete-orders">
   <h3>Incomplete Work Orders</h3>
-  <% @user.routes.each do |route| %>
-    <% route.work_orders.each do |wo| %>
-      <% if !wo.complete? %>
-        <%= wo.job.name %>
+  <ul>
+  <% @user.work_orders.each do |wo| %>
+    <% if !wo.complete? %>
+        <li><%= link_to "#{wo.job.name}", work_order_path(wo)  %> </li>
       <% end %>
-    <% end %>
   <% end %>
+  </ul>
+
 </div>
 
 
 
 <div class="complete-orders">
   <h3>Complete Work Orders</h3>
-  <% @user.routes.each do |route| %>
-    <% route.work_orders.each do |wo| %>
-      <% if wo.complete? %>
-        <%= wo.job.name %>
+  <ul>
+  <% @user.work_orders.each do |wo| %>
+    <% if wo.complete? %>
+       <li> <%= link_to "#{wo.job.name}", work_order_path(wo)  %> </li>
       <% end %>
-    <% end %>
   <% end %>
+  </ul>
 
 </div>

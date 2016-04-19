@@ -1,9 +1,9 @@
 <%= simple_form_for(@work_order) do |f| %>
   <%= f.error_notification %>
 
+  <h2><%= @work_order.job.name %></h2>
+
   <div class="form-inputs">
-    <%= f.input :employee_id %>
-    <%= f.input :job_id %>
     <%= f.input :final_price %>
     <%= f.input :notes %>
     <%= f.input :complete %>

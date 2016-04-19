@@ -1,0 +1,24 @@
+<%= simple_form_for(@user) do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <%= f.input :name, placeholder: "First Last" %>
+  <%= f.input :phone, placeholder: "555-555-5555" %>
+  <%= f.input :email, placeholder: "user@krystalklear.com" %>
+  <%= f.input :password, input_html: { maxlength: 20 } %>
+  <%= f.input :hire_date, as: :string, input_html: {type: :date} %>
+  <%= f.input :admin, as: :boolean, checked_value: true, unchecked_value: false  %>
+  <%= f.button :submit %>
+
+
+<% end %>

@@ -1,0 +1,22 @@
+<!-- <p id="notice"><%= notice %></p> -->
+<%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
+
+<% if @user != current_user %>
+  <h3><%= @user.name %></h3>
+  <h3><%= @user.email %></h3>
+  <h3><%= @user.phone %></h3>
+<% end %>
+
+<% if current_user.admin? %>
+  <%= render "admin_page" %>
+<% else %>
+  <%= render "employee_page" %>
+<% end %>
+
+
+
+
+
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>

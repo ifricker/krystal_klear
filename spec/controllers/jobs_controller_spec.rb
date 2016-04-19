@@ -67,7 +67,7 @@ RSpec.describe JobsController, type: :controller do
 
   describe "POST #create" do
     context "with valid params" do
-      client = Client.create!(business_name: "business", contact_email: "john@doe.com", contact_phone: "1234567890", street_address: "123 ok", neighborhood: "ok", zip_code: "74055")
+      Client.create!(business_name: "business", contact_email: "john@doe.com", contact_phone: "1234567890", street_address: "123 ok", neighborhood: "ok", zip_code: "74055")
       it "creates a new Job" do
         expect {
           post :create, {:job => valid_attributes, client_id: Client.last.id}, valid_session
@@ -88,7 +88,7 @@ RSpec.describe JobsController, type: :controller do
 
     context "with invalid params" do
       it "assigns a newly created but unsaved job as @job" do
-        client = Client.create!(business_name: "business", contact_email: "john@doe.com", contact_phone: "1234567890", street_address: "123 ok", neighborhood: "ok", zip_code: "74055")
+        Client.create!(business_name: "business", contact_email: "john@doe.com", contact_phone: "1234567890", street_address: "123 ok", neighborhood: "ok", zip_code: "74055")
         job = Job.new
         post :create, {:job => invalid_attributes, client_id: Client.last.id}, valid_session
         expect(Job.last).to_not be(job)
@@ -134,7 +134,9 @@ RSpec.describe JobsController, type: :controller do
 
     context "with invalid params" do
       let(:client) { Client.create(business_name: "business", contact_email: "john@doe.com", contact_phone: "1234567890", street_address: "123 ok", neighborhood: "ok", zip_code: "74055")}
-
+      let(:invalid) {
+        ({name: "", description: 123, frequency: "weekly", estimated_price: 125.50, route_id: 1})
+      }
       it "assigns the job as @job" do
         job = Job.new valid_attributes
         job.client = client
@@ -147,24 +149,30 @@ RSpec.describe JobsController, type: :controller do
         job = Job.new valid_attributes
         job.client = client
         job.save
-        put :update, {:client_id => client.to_param,:id => job.to_param, :job => invalid_attributes}, valid_session
+        put :update, {:client_id => client.to_param, :id => job.to_param, :job => invalid}, valid_session
         expect(response).to render_template("edit")
       end
     end
   end
 
   describe "DELETE #destroy" do
+  let(:client) { Client.create(business_name: "business", contact_email: "john@doe.com", contact_phone: "1234567890", street_address: "123 ok", neighborhood: "ok", zip_code: "74055")}
+
     it "destroys the requested job" do
-      job = Job.create! valid_attributes
+      job = Job.new valid_attributes
+        job.client = client
+        job.save
       expect {
-        delete :destroy, {:id => job.to_param}, valid_session
+        delete :destroy, {:client_id => client.to_param, :id => job.to_param}, valid_session
       }.to change(Job, :count).by(-1)
     end
 
     it "redirects to the jobs list" do
-      job = Job.create! valid_attributes
-      delete :destroy, {:id => job.to_param}, valid_session
-      expect(response).to redirect_to(jobs_url)
+      job = Job.new valid_attributes
+        job.client = client
+        job.save
+      delete :destroy, {:client_id => client.to_param, :id => job.to_param}, valid_session
+      expect(response).to redirect_to(client_path(client))
     end
   end
 

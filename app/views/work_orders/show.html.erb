@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Employee:</strong>
+  <%= @work_order.employee_id %>
+</p>
+
+<p>
+  <strong>Job:</strong>
+  <%= @work_order.job_id %>
+</p>
+
+<p>
+  <strong>Final price:</strong>
+  <%= @work_order.final_price %>
+</p>
+
+<p>
+  <strong>Notes:</strong>
+  <%= @work_order.notes %>
+</p>
+
+<p>
+  <strong>Complete:</strong>
+  <%= @work_order.complete %>
+</p>
+
+<%= link_to 'Edit', edit_work_order_path(@work_order) %> |
+<%= link_to 'Back', work_orders_path %>

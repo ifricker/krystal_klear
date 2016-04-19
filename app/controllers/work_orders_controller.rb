@@ -14,7 +14,9 @@ class WorkOrdersController < ApplicationController
 
   # GET /work_orders/new
   def new
-    @work_order = WorkOrder.new
+    # @work_order = WorkOrder.new
+    Job.generate_work_order
+    redirect_to '/'
   end
 
   # GET /work_orders/1/edit

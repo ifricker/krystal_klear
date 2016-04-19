@@ -9,11 +9,11 @@ class Job < ActiveRecord::Base
     jobs.each do |j|
       seconds = Time.now - j.created_at
       weeks = seconds/60480
-      days = j.frequency * 7
 
-      if weeks % days == 0
-        work_order = WorkOrder.create(job_id: j.id)
+      if weeks % j.frequency == 0
+        WorkOrder.create(job_id: j.id)
       end
     end
   end
+
 end

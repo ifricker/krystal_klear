@@ -9,6 +9,8 @@
 
 <% if current_user.admin? %>
   <%= render "admin_page" %>
+  <%= link_to 'Edit', edit_user_path(@user) %> |
+  <%= link_to 'Back', users_path %>
 <% else %>
   <%= render "employee_page" %>
 <% end %>
@@ -18,5 +20,3 @@
 
 
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>

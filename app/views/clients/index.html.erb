@@ -33,18 +33,3 @@
   </tbody>
 </table>
 
-<% @jobs.each do |job| %>
-      <tr>
-        <td><%= job.name %></td>
-        <td><%= job.description %></td>
-        <td><%= job.frequency %></td>
-        <td><%= job.estimated_price %></td>
-        <td><%= job.client_id %></td>
-        <td><%= job.route_id %></td>
-        <td><%= link_to 'Show', client_job_path(@client, job) %></td>
-        <td><%= link_to 'Edit', edit_client_job_path(@client, job) %></td>
-        <td><%= link_to 'Destroy', client_job_path(@client, job), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-

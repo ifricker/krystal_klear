@@ -4,8 +4,8 @@ class JobsController < ApplicationController
   # GET /jobs
   # GET /jobs.json
   def index
-    @jobs = Job.all
     @client = Client.find(params[:client_id])
+    @jobs = @client.jobs
   end
 
   # GET /jobs/1

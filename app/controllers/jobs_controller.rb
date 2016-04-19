@@ -17,7 +17,7 @@ class JobsController < ApplicationController
   # GET /jobs/new
   def new
     @job = Job.new
-    @client = Client.find(params[:client_id])
+    @client = Client.find_by(id: params[:client_id])
   end
 
   # GET /jobs/1/edit

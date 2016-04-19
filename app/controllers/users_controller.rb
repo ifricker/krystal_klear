@@ -1,11 +1,13 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :is_admin?, only: [:index, :edit, :update, :destroy]
+  # before_action :set_work_order, only: [:show, :edit, :update, :destroy]
 
   # GET /users
   # GET /users.json
   def index
     @users = User.all
+    # @work_orders = WorkOrder.all
   end
 
   # GET /users/1
@@ -70,6 +72,10 @@ class UsersController < ApplicationController
     def set_user
       @user = User.find(params[:id])
     end
+
+    # def set_work_order
+    #   @work_order = WorkOrder.find(params[:id])
+    # end
 
     def is_admin?
       unless current_user && current_user.admin?

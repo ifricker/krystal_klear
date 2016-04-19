@@ -14,8 +14,19 @@ class WorkOrdersController < ApplicationController
 
   # GET /work_orders/new
   def new
-    # @work_order = WorkOrder.new
+  end
+
+  # POST /work_orders/current
+  # POST /work_orders/current.json
+  def current
     Job.generate_work_order
+    redirect_to '/'
+  end
+
+  # POST /work_orders/next
+  # POST /work_orders/next.json
+  def next
+    Job.generate_next_weeks_work_order
     redirect_to '/'
   end
 
@@ -74,3 +85,4 @@ class WorkOrdersController < ApplicationController
       params.require(:work_order).permit(:employee_id, :job_id, :final_price, :notes, :complete)
     end
 end
+

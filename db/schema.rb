@@ -30,9 +30,8 @@ ActiveRecord::Schema.define(version: 20160419173654) do
   create_table "jobs", force: :cascade do |t|
     t.string   "name",            null: false
     t.string   "description",     null: false
-    t.string   "frequency"
+    t.integer  "frequency"
     t.float    "estimated_price", null: false
-    t.float    "final_price"
     t.integer  "client_id",       null: false
     t.integer  "route_id"
     t.datetime "created_at",      null: false
@@ -69,10 +68,11 @@ ActiveRecord::Schema.define(version: 20160419173654) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "work_orders", force: :cascade do |t|
-    t.integer  "employee_id"
+    t.integer  "route_id"
     t.integer  "job_id",                      null: false
     t.float    "final_price"
     t.text     "notes"
+    t.integer  "week"
     t.boolean  "complete",    default: false
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false

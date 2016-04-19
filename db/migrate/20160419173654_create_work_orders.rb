@@ -5,6 +5,7 @@ class CreateWorkOrders < ActiveRecord::Migration
       t.integer :job_id, null: false
       t.float :final_price
       t.text :notes
+      t.integer :week
       t.boolean :complete, default:false
 
       t.timestamps null: false

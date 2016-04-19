@@ -1,6 +1,12 @@
 require 'rails_helper'
 
 feature 'Admin creating, viewing, editing and deleting clients' do
+  before(:each) do
+    admin = User.create(name: "admin", email: "okay@ok.com", phone: "1234567890", admin: true, password: "123456")
+    login_as(admin, :scope => :user)
+  end
+
+
   scenario 'when admin clicks on new client' do
     visit '/clients'
     click_link "New Client"

@@ -1,5 +1,6 @@
 class ClientsController < ApplicationController
   before_action :set_client, only: [:show, :edit, :update, :destroy]
+  before_action :is_admin?, only: [:show, :index, :edit, :update, :destroy]
 
   # GET /clients
   # GET /clients.json
@@ -67,6 +68,13 @@ class ClientsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_client
       @client = Client.find(params[:id])
+    end
+
+    def is_admin?
+      unless current_user && current_user.admin?
+        flash[:error] = "You must be an administrator in to access this section"
+        redirect_to "/" # halts request cycle
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

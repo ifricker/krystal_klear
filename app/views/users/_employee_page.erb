@@ -1,1 +1,27 @@
-<h3><%= @user.name %></h3>
+<h2><%= @user.name %></h2>
+
+
+<divclass="incomplete-orders">
+  <h3>Incomplete Work Orders</h3>
+  <% @user.routes.each do |route| %>
+    <% route.work_orders.each do |wo| %>
+      <% if !wo.complete? %>
+        <%= wo.job.name %>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>
+
+
+
+<div class="complete-orders">
+  <h3>Complete Work Orders</h3>
+  <% @user.routes.each do |route| %>
+    <% route.work_orders.each do |wo| %>
+      <% if wo.complete? %>
+        <%= wo.job.name %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+</div>

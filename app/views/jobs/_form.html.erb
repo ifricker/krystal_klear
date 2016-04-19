@@ -7,6 +7,7 @@
       <%= f.input :description %>
       <%= f.input :frequency %>
       <%= f.input :estimated_price %>
+      <%= f.association :route, collection: Route.order(:name), prompt: "Choose a Route" %>
     </div>
 
     <div class="form-actions">

@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 20160419015806) do
     t.string   "description",     null: false
     t.string   "frequency"
     t.float    "estimated_price", null: false
+    t.float    "final_price"
     t.integer  "client_id",       null: false
     t.integer  "route_id"
     t.datetime "created_at",      null: false

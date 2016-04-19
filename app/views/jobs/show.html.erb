@@ -22,12 +22,12 @@
 
 <p>
   <strong>Client:</strong>
-  <%= @job.client_id %>
+  <%= @job.client.business_name %>
 </p>
 
 <p>
   <strong>Route:</strong>
-  <%= @job.route_id %>
+  <%= @job.route.name %>
 </p>
 
 <%= link_to 'Edit', edit_client_job_path(@client, @job) %> |

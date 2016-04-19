@@ -1,1 +1,29 @@
-<h3><%= @user.name %></h3>
+<h2 class="name-header"><%= @user.name %></h2>
+
+<div class="orders-container">
+<div class="incomplete-orders">
+  <h3>Incomplete Work Orders</h3>
+  <ul>
+  <% @user.work_orders.each do |wo| %>
+    <% if !wo.complete? %>
+        <li><%= link_to "#{wo.job.name}", work_order_path(wo)  %> </li>
+      <% end %>
+  <% end %>
+  </ul>
+
+</div>
+
+
+
+<div class="complete-orders">
+  <h3>Complete Work Orders</h3>
+  <ul>
+  <% @user.work_orders.each do |wo| %>
+    <% if wo.complete? %>
+       <li> <%= link_to "#{wo.job.name}", work_order_path(wo)  %> </li>
+      <% end %>
+  <% end %>
+  </ul>
+
+</div>
+</div>

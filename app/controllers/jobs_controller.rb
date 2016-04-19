@@ -18,7 +18,7 @@ class JobsController < ApplicationController
   # GET /jobs/new
   def new
     @job = Job.new
-    @client = Client.find(params[:client_id])
+    @client = Client.find_by(id: params[:client_id])
   end
 
   # GET /jobs/1/edit
@@ -45,6 +45,7 @@ class JobsController < ApplicationController
   # PATCH/PUT /jobs/1
   # PATCH/PUT /jobs/1.json
   def update
+    @client = Client.find(params[:client_id])
     respond_to do |format|
       if @job.update(job_params)
         @client = Client.find(params[:client_id])
@@ -71,7 +72,7 @@ class JobsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_job
-      @job = Job.find(params[:id])
+      @job = Job.find_by(id: params[:id])
     end
 
     def is_admin?

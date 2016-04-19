@@ -1,13 +1,25 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Employee:</strong>
-  <%#= @work_order.employee_id %>
+  <strong>Employees:</strong>
+  <% @work_order.employees.each do |employee| %>
+    <%= employee.name %>
+  <% end %>
+</p>
+
+<p>
+  <strong>Client:</strong>
+  <%= @work_order.job.client.business_name %>
 </p>
 
 <p>
   <strong>Job:</strong>
   <%= @work_order.job.name %>
+</p>
+
+<p>
+  <strong>Job Description:</strong>
+  <%= @work_order.job.description %>
 </p>
 
 <p>
@@ -26,4 +38,4 @@
 </p>
 
 <%= link_to 'Edit', edit_work_order_path(@work_order) %> |
-<%= link_to 'Back', work_orders_path %>
+<%= link_to 'Back', user_path(current_user) %>

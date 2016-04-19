@@ -15,8 +15,10 @@
   </thead>
 
   <tbody>
+    <% @work_orders = WorkOrder.all %>
     <% @work_orders.each do |work_order| %>
       <tr>
+        <td><%#= work_order.employee_id %></td>
         <td><%= work_order.job_id %></td>
         <td><%= work_order.final_price %></td>
         <td><%= work_order.notes %></td>

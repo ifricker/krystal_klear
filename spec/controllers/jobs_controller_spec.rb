@@ -24,11 +24,11 @@ RSpec.describe JobsController, type: :controller do
   # Job. As you add validations to Job, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    ({name: "name", description: "describes a job", frequency: "weekly", estimated_price: 125.50, client_id: 1, route_id: 1})
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    ({name: "name", description: 1234, frequency: "weekly", estimated_price: "125.50", client_id: 1, route_id: 1})
   }
 
   # This should return the minimal set of values that should be in the session
@@ -36,123 +36,143 @@ RSpec.describe JobsController, type: :controller do
   # JobsController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
-  describe "GET #index" do
-    it "assigns all jobs as @jobs" do
-      job = Job.create! valid_attributes
-      get :index, {}, valid_session
-      expect(assigns(:jobs)).to eq([job])
+  describe "GET #new" do
+    it "creates a new job" do
+      job = Job.create valid_attributes
+      expect([Job.last]).to eq([job])
     end
   end
 
   describe "GET #show" do
     it "assigns the requested job as @job" do
-      job = Job.create! valid_attributes
-      get :show, {:id => job.to_param}, valid_session
+      client = Client.create!(business_name: "business", contact_email: "john@doe.com", contact_phone: "1234567890", street_address: "123 ok", neighborhood: "ok", zip_code: "74055")
+      job = Job.new valid_attributes
+      job.client = client
+      job.save
+      get :show, {:client_id => client.to_param, :id => job.to_param}, valid_session
       expect(assigns(:job)).to eq(job)
-    end
-  end
-
-  describe "GET #new" do
-    it "assigns a new job as @job" do
-      get :new, {}, valid_session
-      expect(assigns(:job)).to be_a_new(Job)
     end
   end
 
   describe "GET #edit" do
     it "assigns the requested job as @job" do
-      job = Job.create! valid_attributes
-      get :edit, {:id => job.to_param}, valid_session
+      client = Client.create!(business_name: "business", contact_email: "john@doe.com", contact_phone: "1234567890", street_address: "123 ok", neighborhood: "ok", zip_code: "74055")
+      job = Job.new valid_attributes
+      job.client = client
+      job.save
+      get :edit, {:client_id => client.to_param, :id => job.to_param}, valid_session
       expect(assigns(:job)).to eq(job)
     end
   end
 
   describe "POST #create" do
     context "with valid params" do
+      Client.create!(business_name: "business", contact_email: "john@doe.com", contact_phone: "1234567890", street_address: "123 ok", neighborhood: "ok", zip_code: "74055")
       it "creates a new Job" do
         expect {
-          post :create, {:job => valid_attributes}, valid_session
+          post :create, {:job => valid_attributes, client_id: Client.last.id}, valid_session
         }.to change(Job, :count).by(1)
       end
 
       it "assigns a newly created job as @job" do
-        post :create, {:job => valid_attributes}, valid_session
+        post :create, {:job => valid_attributes, client_id: Client.last.id}, valid_session
         expect(assigns(:job)).to be_a(Job)
         expect(assigns(:job)).to be_persisted
       end
 
       it "redirects to the created job" do
-        post :create, {:job => valid_attributes}, valid_session
-        expect(response).to redirect_to(Job.last)
+        post :create, {:job => valid_attributes, client_id: Client.last.id}, valid_session
+        expect(response).to redirect_to(client_job_path(Client.last, Job.last))
       end
     end
 
     context "with invalid params" do
       it "assigns a newly created but unsaved job as @job" do
-        post :create, {:job => invalid_attributes}, valid_session
-        expect(assigns(:job)).to be_a_new(Job)
+        Client.create!(business_name: "business", contact_email: "john@doe.com", contact_phone: "1234567890", street_address: "123 ok", neighborhood: "ok", zip_code: "74055")
+        job = Job.new
+        post :create, {:job => invalid_attributes, client_id: Client.last.id}, valid_session
+        expect(Job.last).to_not be(job)
       end
 
-      it "re-renders the 'new' template" do
-        post :create, {:job => invalid_attributes}, valid_session
-        expect(response).to render_template("new")
-      end
+
     end
   end
 
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        ({name: "name", description: "describes a new", frequency: "weekly", estimated_price: 125.50, route_id: 1})
       }
 
+      let(:client) { Client.create(business_name: "business", contact_email: "john@doe.com", contact_phone: "1234567890", street_address: "123 ok", neighborhood: "ok", zip_code: "74055")}
+
       it "updates the requested job" do
-        job = Job.create! valid_attributes
-        put :update, {:id => job.to_param, :job => new_attributes}, valid_session
+        job = Job.new valid_attributes
+        job.client = client
+        job.save
+        put :update, {:client_id => client.to_param, :id => job.to_param, :job => new_attributes}, valid_session
         job.reload
         skip("Add assertions for updated state")
       end
 
       it "assigns the requested job as @job" do
-        job = Job.create! valid_attributes
-        put :update, {:id => job.to_param, :job => valid_attributes}, valid_session
+        job = Job.new valid_attributes
+        job.client = client
+        job.save
+        put :update, {:client_id => client.to_param,:id => job.to_param, :job => valid_attributes}, valid_session
         expect(assigns(:job)).to eq(job)
       end
 
       it "redirects to the job" do
-        job = Job.create! valid_attributes
-        put :update, {:id => job.to_param, :job => valid_attributes}, valid_session
-        expect(response).to redirect_to(job)
+        job = Job.new valid_attributes
+        job.client = client
+        job.save
+        put :update, {:client_id => client.to_param,:id => job.to_param, :job => valid_attributes}, valid_session
+        expect(response).to redirect_to(client_job_path(client, job))
       end
     end
 
     context "with invalid params" do
+      let(:client) { Client.create(business_name: "business", contact_email: "john@doe.com", contact_phone: "1234567890", street_address: "123 ok", neighborhood: "ok", zip_code: "74055")}
+      let(:invalid) {
+        ({name: "", description: 123, frequency: "weekly", estimated_price: 125.50, route_id: 1})
+      }
       it "assigns the job as @job" do
-        job = Job.create! valid_attributes
-        put :update, {:id => job.to_param, :job => invalid_attributes}, valid_session
+        job = Job.new valid_attributes
+        job.client = client
+        job.save
+        put :update, {:client_id => client.to_param,:id => job.to_param, :job => invalid_attributes}, valid_session
         expect(assigns(:job)).to eq(job)
       end
 
       it "re-renders the 'edit' template" do
-        job = Job.create! valid_attributes
-        put :update, {:id => job.to_param, :job => invalid_attributes}, valid_session
+        job = Job.new valid_attributes
+        job.client = client
+        job.save
+        put :update, {:client_id => client.to_param, :id => job.to_param, :job => invalid}, valid_session
         expect(response).to render_template("edit")
       end
     end
   end
 
   describe "DELETE #destroy" do
+  let(:client) { Client.create(business_name: "business", contact_email: "john@doe.com", contact_phone: "1234567890", street_address: "123 ok", neighborhood: "ok", zip_code: "74055")}
+
     it "destroys the requested job" do
-      job = Job.create! valid_attributes
+      job = Job.new valid_attributes
+        job.client = client
+        job.save
       expect {
-        delete :destroy, {:id => job.to_param}, valid_session
+        delete :destroy, {:client_id => client.to_param, :id => job.to_param}, valid_session
       }.to change(Job, :count).by(-1)
     end
 
     it "redirects to the jobs list" do
-      job = Job.create! valid_attributes
-      delete :destroy, {:id => job.to_param}, valid_session
-      expect(response).to redirect_to(jobs_url)
+      job = Job.new valid_attributes
+        job.client = client
+        job.save
+      delete :destroy, {:client_id => client.to_param, :id => job.to_param}, valid_session
+      expect(response).to redirect_to(client_path(client))
     end
   end
 

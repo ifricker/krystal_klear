@@ -44,6 +44,7 @@ class JobsController < ApplicationController
   # PATCH/PUT /jobs/1
   # PATCH/PUT /jobs/1.json
   def update
+    @client = Client.find(params[:client_id])
     respond_to do |format|
       if @job.update(job_params)
         @client = Client.find(params[:client_id])
@@ -70,7 +71,7 @@ class JobsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_job
-      @job = Job.find(params[:id])
+      @job = Job.find_by(id: params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -11,9 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 20160419015806) do
-
+ActiveRecord::Schema.define(version: 20160419173654) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,12 +27,12 @@ ActiveRecord::Schema.define(version: 20160419015806) do
     t.datetime "updated_at",     null: false
   end
 
-
   create_table "jobs", force: :cascade do |t|
     t.string   "name",            null: false
     t.string   "description",     null: false
     t.string   "frequency"
     t.float    "estimated_price", null: false
+    t.float    "final_price"
     t.integer  "client_id",       null: false
     t.integer  "route_id"
     t.datetime "created_at",      null: false
@@ -46,7 +44,6 @@ ActiveRecord::Schema.define(version: 20160419015806) do
     t.text     "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-
   end
 
   create_table "users", force: :cascade do |t|
@@ -70,5 +67,15 @@ ActiveRecord::Schema.define(version: 20160419015806) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+
+  create_table "work_orders", force: :cascade do |t|
+    t.integer  "employee_id"
+    t.integer  "job_id",                      null: false
+    t.float    "final_price"
+    t.text     "notes"
+    t.boolean  "complete",    default: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+  end
 
 end

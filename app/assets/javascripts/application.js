@@ -14,3 +14,31 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+$(function(){
+  $( ".route" ).draggable({
+    helper: "clone",
+  });
+
+  $( "#routes_list" ).droppable({
+    accept: ".route",
+    drop: function( event, ui ) {
+      var clone = $(ui.draggable).clone()
+      $(ui.draggable).remove();
+    }
+  });
+
+  $( ".employee" ).droppable({
+    accept: ".route",
+    drop: function( event, ui ) {
+      var clone = $(ui.draggable).clone()
+      clone.appendTo('.employee :first-child');
+      clone.draggable({
+        helper: "clone",
+
+      });
+    }
+  });
+});
+
+
+// $("#mydiv div:first-child").after(newDiv);

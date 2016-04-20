@@ -1,5 +1,6 @@
 .name-header {
   text-align: center;
+  font-size: 22px;
 }
 
 .orders-container {
@@ -26,4 +27,19 @@
 
 .employees {
   display: inline-block;
+}
+
+.employee-table {
+  margin: 0 auto;
+}
+
+.create-new-link {
+  padding:5px 15px;
+  background:#ccddff;
+  border:0 none;
+  cursor:pointer;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  margin-top: 15px;
+  width: 130px;
 }

@@ -18,6 +18,7 @@ body {
   margin:5%;
   font-family: 'Roboto', sans-serif;
   font-weight: 300;
+  background-color: #e6e6e6;
 }
 
 .company-title {
@@ -51,6 +52,17 @@ nav li {
   display: inline-block;
   font-size: 20px;
   padding-right: 20px;
+}
+
+.back-link {
+  padding:5px 15px;
+  background:#ccddff;
+  border:0 none;
+  cursor:pointer;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  margin-top: 15px;
+  width: 50px;
 }
 
 

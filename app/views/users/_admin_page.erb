@@ -1,7 +1,4 @@
-<%= link_to "New Route", new_route_path %><br />
-<%= link_to "All Clients", clients_path %><br />
-<%= link_to "New Employee", new_user_path %><br />
-<%= link_to "New Client", new_client_path %><br />
+<br><br><%= link_to "New Route", new_route_path %> | <%= link_to "New Employee", new_user_path %> | <%= link_to "New Client", new_client_path %> | <%= link_to "All Clients", clients_path %><br />
 
 <% if @last_work_order_week.to_i < Time.now.strftime('%W').to_i %>
   <%= link_to "Generate work orders", current_work_orders_path, method: :post %>
@@ -15,7 +12,7 @@
 
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Work Orders</h1>
+<!-- <h1>Listing Work Orders</h1>
 <table>
   <thead>
     <tr>
@@ -28,22 +25,22 @@
   </thead>
 
   <tbody>
-    <% @work_orders = WorkOrder.all %>
-    <% @work_orders.each do |work_order| %>
+    <%# @work_orders = WorkOrder.all %>
+    <%# @work_orders.each do |work_order| %>
       <tr>
-        <td><%= work_order.job.name %></td>
-        <td><%= work_order.final_price %></td>
-        <td><%= work_order.week %></td>
-        <td><%= work_order.complete %></td>
-        <td><%= link_to 'Show', work_order %></td>
-        <td><%= link_to 'Edit', edit_work_order_path(work_order) %></td>
-        <td><%= link_to 'Destroy', work_order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%#= work_order.job.name %></td>
+        <td><%#= work_order.final_price %></td>
+        <td><%#= work_order.week %></td>
+        <td><%#= work_order.complete %></td>
+        <td><%#= link_to 'Show', work_order %></td>
+        <td><%#= link_to 'Edit', edit_work_order_path(work_order) %></td>
+        <td><%#= link_to 'Destroy', work_order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
-    <% end %>
+    <%# end %>
   </tbody>
 </table>
 
-<br>
+<br> -->
 
-<%= link_to 'New Work order', new_work_order_path %>
+<%#= link_to 'New Work order', new_work_order_path %>
 

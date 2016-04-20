@@ -27,14 +27,16 @@
 <hr>
 <h3 class="route"><%= route.name %></h3>
 <div class="form_container">
-  <%= simple_form_for(route) do |f| %>
-  <div class="form-inputs">
-    <%= f.association :employees, collection: User.order(:name) %>
-  </div>
-  <div class="form-actions">
-    <%= f.button :submit, "Assign" %>
-  </div>
+
+  <%= form_tag(current_week_work_orders_route_path(route), method: :patch) do %>
+    <div class="form-inputs">
+      <%= select_tag 'employees', options_from_collection_for_select(User.all, "id", "name"),  multiple: true %>
+    </div>
+    <div class="form-actions">
+      <%= submit_tag "Assign" %>
+    </div>
   <% end %>
+
   </div>
 <table id="routes_list">
   <tr>
@@ -63,14 +65,14 @@
   <tr class="row-align">
     <th><h3><%= employee.name %></h3></th>
   </tr>
-  <% if employee.routes.count == 0 %>
+  <% if employee.current_week_routes.count == 0 %>
     <tr class="employee row-align">
       <td class="no-padding">No assigned routes....</td>
     </tr>
   <% else %>
-    <% employee.routes.each do |route| %>
+    <% employee.current_week_routes.pluck(:name).uniq.each do |route| %>
       <tr class="employee row-align">
-        <td class="blue no-padding"><%= route.name %></td>
+        <td class="blue no-padding"><%= route %></td>
       </tr>
     <% end %>
   <% end %>

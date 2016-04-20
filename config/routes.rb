@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
   resources :work_orders
-  resources :routes
+  resources :routes do
+    member do
+      patch 'current_week_work_orders', to: 'current_week_work_orders#update'
+    end
+  end
+
   devise_for :users
   resources :users
   resources :clients do

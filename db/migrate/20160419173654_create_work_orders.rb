@@ -6,7 +6,7 @@ class CreateWorkOrders < ActiveRecord::Migration
       t.float :final_price
       t.text :notes
       t.integer :week
-      t.boolean :complete, default:false
+      t.string :complete, default: 'incomplete'
 
       t.timestamps null: false
     end

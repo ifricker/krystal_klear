@@ -5,19 +5,28 @@
 
 .orders-container {
   margin: 0 auto;
-  width: 650px;
+  /*width: 650px;*/
 }
 
 .incomplete-orders {
-  width: 300px;
+  max-width: 500px;
   display: inline-block;
   margin: 10px;
+  margin-right: 0;
 }
 
 .complete-orders {
-  width: 300px;
+  max-width: 500px;
   display: inline-block;
   margin: 10px;
+  position: absolute;
+}
+
+.passed-orders {
+  max-width: 500px;
+  /*display: inline-block;*/
+  margin: 10px;
+  float: bottom;
 }
 
 .open-work-orders {

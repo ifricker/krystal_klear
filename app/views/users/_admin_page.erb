@@ -1,18 +1,68 @@
 <br><br><%= link_to "New Route", new_route_path %> | <%= link_to "New Employee", new_user_path %> | <%= link_to "New Client", new_client_path %> | <%= link_to "All Clients", clients_path %><br />
 
 <% if @last_work_order_week.to_i < Time.now.strftime('%W').to_i %>
-  <%= link_to "Generate work orders", current_work_orders_path, method: :post %>
-  <%= link_to "Generate next weeks work orders", next_work_orders_path, method: :post %>
+  <%= link_to "Generate work orders", current_work_orders_path, method: :post %><br/>
+  <%= link_to "Generate next week's work orders", next_work_orders_path, method: :post %>
 <% elsif @last_work_order_week == Time.now.strftime('%W').to_i %>
-  <%= link_to "Generate next weeks work orders", next_work_orders_path, method: :post %>
+  <%= link_to "Generate next week's work orders", next_work_orders_path, method: :post %>
 <% end %>
 
-
-
-
 <p id="notice"><%= notice %></p>
+<div class="open-work-orders">
+<h2>Open Routes</h2>
+  <% routes = Route.all %>
+  <% routes.each do |route| %>
+    <h3 class="route"><%= route.name %></h3>
+    <div class="form_container">
+      <%= simple_form_for(route) do |f| %>
+        <div class="form-inputs">
+          <%= f.association :employees, collection: User.order(:name) %>
+        </div>
+        <div class="form-actions">
+          <%= f.button :submit %>
+        </div>
+      <% end %>
+    </div>
+    <table id="routes_list">
+    <tr>
+      <th>Job Name</th>
+      <th>Week</th>
+      <th>Complete</th>
+    </tr>
+     <% route.work_orders.each do |wo|%>
+    <tr>
+      <td><%= wo.job.name %></td>
+      <td><%= wo.week %></td>
+      <td><%= wo.complete %></td>
+    </tr>
+     <% end %>
+    </table>
+  <% end %>
+</div>
 
-<!-- <h1>Listing Work Orders</h1>
+<div class="employees">
+<h2>Employee's</h2>
+  <% employees = User.all %>
+  <% employees.each do |employee| %>
+  <table id="employees_list">
+  <tr>
+    <th><h3><%= employee.name %></h3></th>
+  </tr>
+  <% if employee.routes.count == 0 %>
+    <tr class="employee">
+      <td>No assigned routes....</td>
+    </tr>
+  <% else %>
+    <% employee.routes.each do |route| %>
+      <tr class="employee">
+        <td><%= route.name %></td>
+      </tr>
+    <% end %>
+  <% end %>
+  </table>
+  <% end %>
+</div>
+<!--  <h1>Listing Work Orders</h1>
 <table>
   <thead>
     <tr>
@@ -39,8 +89,6 @@
     <%# end %>
   </tbody>
 </table>
+ -->
 
-<br> -->
-
-<%#= link_to 'New Work order', new_work_order_path %>
 

@@ -18,3 +18,12 @@
   display: inline-block;
   margin: 10px;
 }
+
+.open-work-orders {
+  display: inline-block;
+  float: left;
+}
+
+.employees {
+  display: inline-block;
+}

@@ -44,9 +44,13 @@ class RoutesController < ApplicationController
   # PATCH/PUT /routes/1
   # PATCH/PUT /routes/1.json
   def update
+    employee_id = params[:route][:employee_ids][1..-1]
+    employee_id.each do |id|
+      @route.employees << User.find_by(id: id)
+    end
     respond_to do |format|
       if @route.update(route_params)
-        format.html { redirect_to @route, notice: 'Route was successfully updated.' }
+        format.html { redirect_to "/", notice: 'Route was successfully updated.' }
         format.json { render :show, status: :ok, location: @route }
       else
         format.html { render :edit }
@@ -80,6 +84,6 @@ class RoutesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def route_params
-      params.require(:route).permit(:name, :description)
+      params.require(:route).permit(:name, :description, :employee_ids)
     end
 end

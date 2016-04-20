@@ -52,6 +52,11 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :users do
+    member do
+      get 'employee'
+    end
+  end
   # Example resource route with sub-resources:
   #   resources :products do
   #     resources :comments, :sales

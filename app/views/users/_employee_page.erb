@@ -5,78 +5,65 @@
 <div class="incomplete-orders">
   <h3>Incomplete Work Orders</h3>
   <ul>
-  <% @user.routes.each do |route| %>
-    <% if route.work_orders.last.week == current_week && route.work_orders.any? {|wo| wo.incomplete?}  %>
-      <h4><%= route.name %></h4>
+  <% @user.current_week_routes.distinct.each do |route| %>
+    <h4><%= route.name %></h4>
     <table>
       <tr>
         <th>Job Name</th>
         <th>Estimated Price</th>
         <th>Complete</th>
       </tr>
-    <% end %>
-    <% route.work_orders.each do |wo| %>
-      <% if wo.complete == "incomplete" && wo.week == current_week %>
+    <% route.current_week_work_orders.where(complete: 'incomplete').each do |wo|  %>
       <tr>
         <td><%= link_to "#{wo.job.name}", work_order_path(wo)  %></td>
         <td><%= wo.job.estimated_price  %></td>
-        <!-- <td>complete button</td> -->
         <td><%= render partial: "work_orders/done_form", locals: { wo: wo } %></td>
       </tr>
       <% end %>
-    <% end %>
     </table>
-  <% end %>
+    <% end %>
   </ul>
 </div>
 
 <div class="complete-orders">
   <h3>Complete Work Orders</h3>
   <ul>
-  <% @user.routes.each do |route| %>
-    <% if route.work_orders.last.week == current_week && route.work_orders.any? {|wo| wo.complete?} %>
-      <h4><%= route.name %></h4>
+  <% @user.current_week_routes.distinct.each do |route| %>
+    <h4><%= route.name %></h4>
     <table>
       <tr>
         <th>Job Name</th>
         <th>Final Price</th>
       </tr>
-    <% end %>
-    <% route.work_orders.each do |wo| %>
-      <% if wo.complete == "complete" && wo.week == current_week %>
+    <% route.current_week_work_orders.where(complete: 'complete').each do |wo|  %>
       <tr>
         <td><%= link_to "#{wo.job.name}", work_order_path(wo)  %></td>
         <td><%= wo.final_price  %></td>
       </tr>
       <% end %>
-    <% end %>
     </table>
-  <% end %>
+    <% end %>
   </ul>
 </div>
 
 <div class="passed-orders">
   <h3>Customer Pass Work Orders</h3>
   <ul>
-  <% @user.routes.each do |route| %>
-    <% if route.work_orders.last.week == current_week && route.work_orders.any? {|wo| wo.passed?} %>
-      <h4><%= route.name %></h4>
+  <% @user.current_week_routes.distinct.each do |route| %>
+    <h4><%= route.name %></h4>
     <table>
       <tr>
         <th>Job Name</th>
         <th>Estimated Price</th>
       </tr>
-    <% end %>
-    <% route.work_orders.each do |wo| %>
-      <% if wo.complete == "pass" && wo.week == current_week %>
+    <% route.current_week_work_orders.where(complete: 'pass').each do |wo|  %>
       <tr>
         <td><%= link_to "#{wo.job.name}", work_order_path(wo)  %></td>
         <td><%= wo.job.estimated_price  %></td>
       </tr>
       <% end %>
-    <% end %>
     </table>
-  <% end %>
+    <% end %>
   </ul>
 </div>
 

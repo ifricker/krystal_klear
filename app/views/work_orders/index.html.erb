@@ -12,12 +12,13 @@
       <th>Estimated Price</th>
       <th>Final price</th>
       <th>Complete</th>
-      <th>Week</th>
       <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
+    <% @estimated_revenue = 0 %>
+    <% @final_revenue = 0 %>
     <% r.work_orders.where(week: @week).each do |work_order| %>
       <tr>
         <td><% work_order.employees.each do |emp| %>
@@ -28,14 +29,17 @@
         <td><%= work_order.job.estimated_price %></td>
         <td><%= work_order.final_price %></td>
         <td><%= work_order.complete %></td>
-        <td><%= work_order.week %></td>
         <td><%= link_to 'Show', work_order %></td>
         <td><%= link_to 'Edit', edit_work_order_path(work_order) %></td>
-        <td><%= link_to 'Destroy', work_order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Remove', work_order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
+      <% @estimated_revenue += work_order.job.estimated_price %>
+      <% @final_revenue += work_order.final_price.to_i %>
     <% end %>
   </tbody>
 </table>
+<p class="revenue">Estimated Revenue: $<%= @estimated_revenue.to_i %>.00 </p>
+<p class="revenue">Actual Revenue: $<%= @final_revenue.to_i %>.00</p>
   <% end %>
 
 <br>

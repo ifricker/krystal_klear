@@ -37,3 +37,9 @@ textarea.text {
   background-color: #f8f8f8;
   resize: none;
 }
+
+.revenue {
+  font-size: 15px;
+  font-weight: 700;
+  color: #216C2A;
+}

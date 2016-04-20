@@ -4,7 +4,9 @@ class WorkOrdersController < ApplicationController
   # GET /work_orders
   # GET /work_orders.json
   def index
-    @work_orders = WorkOrder.all
+    @routes = Route.all
+    @week = params[:Week]
+    # @work_orders = WorkOrder.includes(:route).where(week: params[:Week])
   end
 
   # GET /work_orders/1

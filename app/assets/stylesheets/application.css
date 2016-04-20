@@ -16,5 +16,54 @@
 
 body {
   margin:5%;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  background-color: #e6e6e6;
 }
+
+.company-title {
+  text-align: center;
+  font-family: 'Lato', sans-serif;
+  font-weight: 900;
+  font-size: 30px;
+  background-color: #4d79ff;
+  padding: 10px;
+  margin: 0px;
+}
+
+#company-subtitle {
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
+  font-size: 25px;
+}
+
+nav {
+  background-color: #ccddff;
+  padding: 10px 0px;
+}
+
+nav ul {
+  text-align: center;
+}
+
+nav li {
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  display: inline-block;
+  font-size: 20px;
+  padding-right: 20px;
+}
+
+.back-link {
+  padding:5px 15px;
+  background:#ccddff;
+  border:0 none;
+  cursor:pointer;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  margin-top: 15px;
+  width: 50px;
+}
+
+
 

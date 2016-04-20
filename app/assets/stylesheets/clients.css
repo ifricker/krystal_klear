@@ -2,19 +2,20 @@
   text-align: center;
 }
 
-#client_table {
+.table {
   margin: 0 auto;
+  width: 100%;
 }
 
-#client_table th, td {
+.table th, td {
     padding: 15px;
     text-align: left;
     border-bottom: 1px solid #ddd;
 }
 
-#client_table tr:nth-child(even) {background-color: #ccddff}
+.table tr:nth-child(even) {background-color: #ccddff}
 
-#client_table #head {
+.table .head {
   background-color: #668cff;
 }
 

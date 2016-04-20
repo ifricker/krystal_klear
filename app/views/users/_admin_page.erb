@@ -1,51 +1,54 @@
+<% current_week = Time.now.strftime('%W').to_i %>
+<section class="create-new-link line"><%= link_to "New Route +", new_route_path %></section>
+<section class="create-new-link line"><%= link_to "New Employee +", new_user_path %></section>
+<section class="create-new-link line"><%= link_to "New Client +", new_client_path %></section>
 <p>It is currently week <%=Time.now.strftime('%W')%> of the year <%=Time.now.strftime('%Y')%></p>
-<br><%= link_to "New Route", new_route_path %> | <%= link_to "New Employee", new_user_path %> | <%= link_to "New Client", new_client_path %> | <%= link_to "All Clients", clients_path %>
-
+<div class="week-form">
   <%= form_tag('/work_orders', method: :get) do %>
   <% work_orders = WorkOrder.all %>
   <%= label_tag "Select Week"%>
   <%= select_tag "Week", options_for_select(1..52), include_blank: true %>
   <%= submit_tag "Search Work Orders" %>
   <% end %>
-
+  </div>
+<div class="work-order">
 <% if @last_work_order_week.to_i < Time.now.strftime('%W').to_i %>
-  <%= link_to "Generate work orders", current_work_orders_path, method: :post %><br/>
-  <%= link_to "Generate next week's work orders", next_work_orders_path, method: :post %>
+  <section class="create-new-link line work-order-link"><%= link_to "Generate current week's work orders +", current_work_orders_path, method: :post %></section>
+  <section class="create-new-link line work-order-link"><%= link_to "Generate next week's work orders +", next_work_orders_path, method: :post %></section>
 <% elsif @last_work_order_week == Time.now.strftime('%W').to_i %>
-  <%= link_to "Generate next week's work orders", next_work_orders_path, method: :post %>
+  <section class="create-new-link line work-order-link"><%= link_to "Generate next week's work orders +", next_work_orders_path, method: :post %></section>
 <% end %>
-
-<p id="notice"><%= notice %></p>
+</div>
 <div class="open-work-orders">
 
 <h2>Open Routes</h2>
-  <% routes = Route.all %>
-  <% routes.each do |route| %>
-    <h3 class="route"><%= route.name %></h3>
-    <div class="form_container">
-      <%= simple_form_for(route) do |f| %>
-        <div class="form-inputs">
-          <%= f.association :employees, collection: User.order(:name) %>
-        </div>
-        <div class="form-actions">
-          <%= f.button :submit, "Assign" %>
-        </div>
-      <% end %>
-    </div>
-    <table id="routes_list">
-    <tr>
-      <th>Job Name</th>
-      <th>Week</th>
-      <th>Complete</th>
-      <th>Estimated Price</th>
-    </tr>
-     <% route.work_orders.each do |wo|%>
+<% routes = Route.all %>
+<% routes.each do |route| %>
+<hr>
+<h3 class="route"><%= route.name %></h3>
+<div class="form_container">
+  <%= simple_form_for(route) do |f| %>
+  <div class="form-inputs">
+    <%= f.association :employees, collection: User.order(:name) %>
+  </div>
+  <div class="form-actions">
+    <%= f.button :submit, "Assign" %>
+  </div>
+  <% end %>
+  </div>
+<table id="routes_list">
+  <tr>
+    <th>Job Name</th>
+    <th>Week</th>
+    <th>Complete</th>
+    <th>Estimated Price</th>
+  </tr>
+    <% route.work_orders.where(week: current_week).each do |wo|%>
     <tr>
       <td><%= wo.job.name %></td>
       <td><%= wo.week %></td>
       <td><%= wo.complete %></td>
       <td><%= wo.job.estimated_price %></td>
-
     </tr>
      <% end %>
     </table>
@@ -53,27 +56,24 @@
 </div>
 
 <div class="employees">
-<h2>Employee's</h2>
+<h2>Employees</h2>
   <% employees = User.all %>
   <% employees.each do |employee| %>
   <table id="employees_list">
-  <tr>
+  <tr class="row-align">
     <th><h3><%= employee.name %></h3></th>
   </tr>
   <% if employee.routes.count == 0 %>
-    <tr class="employee">
-      <td>No assigned routes....</td>
+    <tr class="employee row-align">
+      <td class="no-padding">No assigned routes....</td>
     </tr>
   <% else %>
     <% employee.routes.each do |route| %>
-      <tr class="employee">
-        <td><%= route.name %></td>
+      <tr class="employee row-align">
+        <td class="blue no-padding"><%= route.name %></td>
       </tr>
     <% end %>
   <% end %>
   </table>
   <% end %>
 </div>
-
-
-

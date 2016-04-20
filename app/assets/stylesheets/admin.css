@@ -6,3 +6,46 @@
 .employees {
   float: right;
 }
+
+.line {
+  display: inline-block;
+}
+
+.form-inputs select {
+  height: 100px;
+}
+
+.form-inputs label {
+  display: block;
+}
+
+.work-order {
+  clear: left;
+}
+
+.form-actions {
+  width: 100px;
+  margin-bottom: 20px;
+}
+
+.week-form {
+  width: 190px;
+  margin: 20px auto;
+  float: left;
+}
+
+.work-order-link {
+  width: 270px !important;
+}
+
+.blue {
+  color: #4d79ff;
+  font-weight: bold;
+}
+
+.no-padding {
+  padding: 0;
+}
+.row-align {
+  text-align: left;
+}

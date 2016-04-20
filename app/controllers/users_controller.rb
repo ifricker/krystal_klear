@@ -15,7 +15,7 @@ class UsersController < ApplicationController
   def employee
     if current_user.admin == true
       @user = User.find_by(id: params[:id])
-      render partial: 'employee_page'
+      render :employee
     else
       redirect_to "/"
     end

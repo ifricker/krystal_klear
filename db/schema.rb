@@ -76,13 +76,13 @@ ActiveRecord::Schema.define(version: 20160419183643) do
 
   create_table "work_orders", force: :cascade do |t|
     t.integer  "route_id"
-    t.integer  "job_id",                      null: false
+    t.integer  "job_id",                             null: false
     t.float    "final_price"
     t.text     "notes"
     t.integer  "week"
-    t.boolean  "complete",    default: false
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.string   "complete",    default: "incomplete"
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
   end
 
 end

@@ -1,0 +1,7 @@
+<%= simple_form_for(wo) do |f| %>
+    <%= f.hidden_field :final_price, value: wo.job.estimated_price %>
+    <%= f.hidden_field :complete, value: "complete" %>
+  <div class="form-actions">
+    <%= f.button :submit, value: "Done" %>
+  </div>
+<% end %>

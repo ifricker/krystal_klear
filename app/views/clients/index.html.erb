@@ -1,18 +1,20 @@
-<h1 class="client_header">Krystal Klear's Clients</h1>
+<section class="create-new-link"><%= link_to 'New Client +', new_client_path %></section>
+
+<h1 class="name-header">Clients</h1>
 <div class="destroy_notice">
   <p id="notice"><%= notice %></p>
 </div>
 
-<table id='client_table'>
+<table id='client_table' class="table">
   <thead>
-    <tr id="head">
+    <tr class="head">
       <th>Business name</th>
       <th>Contact email</th>
       <th>Contact phone</th>
       <th>Street address</th>
       <th>Neighborhood</th>
       <th>Zip code</th>
-      <th colspan="3" id="new_client_button"><%= link_to 'New Client', new_client_path %></th>
+      <th colspan="3"></th>
     </tr>
   </thead>
 

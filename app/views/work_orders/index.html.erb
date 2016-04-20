@@ -1,28 +1,34 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Work Orders</h1>
+<h1>Listing Work Orders for Week <%= @week %></h1>
 
-<table>
+<% @routes.each do |r|%>
+<h2><%= r.name %></h2>
+<table class="table">
   <thead>
-    <tr>
+    <tr class="head">
       <th>Employee</th>
       <th>Job</th>
+      <th>Estimated Price</th>
       <th>Final price</th>
       <th>Complete</th>
+      <th>Week</th>
       <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
-    <% @work_orders.each do |work_order| %>
+    <% r.work_orders.where(week: @week).each do |work_order| %>
       <tr>
         <td><% work_order.employees.each do |emp| %>
-        <%= emp.name %>
+        <%= emp.name %><br>
         <% end %>
         </td>
         <td><%= work_order.job.name %></td>
+        <td><%= work_order.job.estimated_price %></td>
         <td><%= work_order.final_price %></td>
         <td><%= work_order.complete %></td>
+        <td><%= work_order.week %></td>
         <td><%= link_to 'Show', work_order %></td>
         <td><%= link_to 'Edit', edit_work_order_path(work_order) %></td>
         <td><%= link_to 'Destroy', work_order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -30,6 +36,7 @@
     <% end %>
   </tbody>
 </table>
+  <% end %>
 
 <br>
 

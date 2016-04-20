@@ -10,6 +10,17 @@ class UsersController < ApplicationController
     # @work_orders = WorkOrder.all
   end
 
+  # GET /users/1/employees
+  # GET /users/1/employees.json
+  def employee
+    if current_user.admin == true
+      @user = User.find_by(id: params[:id])
+      render partial: 'employee_page'
+    else
+      redirect_to "/"
+    end
+  end
+
   # GET /users/1
   # GET /users/1.json
   def show
